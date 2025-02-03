@@ -39,6 +39,9 @@ object JacksonAnnotations : SerializationAnnotations {
     override fun addSubtypeMappingAnnotation(typeSpecBuilder: TypeSpec.Builder, mapping: String) =
         typeSpecBuilder
 
+    override fun addSubtypeNameAnnotation(typeSpecBuilder: TypeSpec.Builder, serialName: String): TypeSpec.Builder =
+        typeSpecBuilder
+
     override fun addEnumPropertyAnnotation(propSpecBuilder: PropertySpec.Builder) =
         propSpecBuilder.addAnnotation(JSON_VALUE)
 

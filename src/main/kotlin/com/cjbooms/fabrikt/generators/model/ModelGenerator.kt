@@ -684,6 +684,11 @@ class ModelGenerator(
                 toModelType(packages.base, KotlinTypeInfo.from(superType.schema, superType.name)),
             )
 
+        val serialName = superType.schema.discriminator.mappingKeyForSchemaName(schemaName)
+        if (serialName != null) {
+            serializationAnnotations.addSubtypeNameAnnotation(this, serialName)
+        }
+
         for (oneOfSuperInterface in oneOfSuperInterfaces) {
             this.addSuperinterface(generatedType(packages.base, oneOfSuperInterface.name))
         }
