@@ -642,7 +642,7 @@ class ModelGenerator(
         val maybeEnumDiscriminator = properties
             .firstOrNull { it.name == discriminator.propertyName }?.typeInfo as? KotlinTypeInfo.Enum
 
-        this.addAnnotation(polymorphicSubTypes(mappings, maybeEnumDiscriminator))
+        serializationAnnotations.addPolymorphicSubTypesAnnotation(this, mappings)
             .addQuarkusReflectionAnnotation()
             .addMicronautIntrospectedAnnotation()
             .addMicronautReflectionAnnotation()
