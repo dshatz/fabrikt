@@ -614,7 +614,9 @@ class ModelGenerator(
         constructorBuilder: FunSpec.Builder = FunSpec.constructorBuilder(),
     ): TypeSpec.Builder {
         this.addModifiers(KModifier.SEALED)
-            .addAnnotation(basePolymorphicType(discriminator.propertyName))
+            .apply {
+                serializationAnnotations.addBasePolymorphicTypeAnnotation(this, discriminator.propertyName)
+            }
             .modifiers.remove(KModifier.DATA)
 
         for (oneOfSuperInterface in oneOfSuperInterfaces) {
